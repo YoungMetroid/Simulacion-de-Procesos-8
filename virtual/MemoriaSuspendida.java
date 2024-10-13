@@ -1,4 +1,5 @@
 package com.elizalde.simulacion.virtual;
+import io.github.pixee.security.BoundedLineReader;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -88,7 +89,7 @@ public class MemoriaSuspendida {
 			fileReader = new FileReader(fileTest);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			
-			currentProcess = bufferedReader.readLine();
+			currentProcess = BoundedLineReader.readLine(bufferedReader, 5_000_000);
 			if(currentProcess != null)
 				{
 				if(currentProcess.length() > 10)
@@ -111,7 +112,7 @@ public class MemoriaSuspendida {
 				
 				String allProcesses = "";
 				currentProcess = "";
-				while((currentProcess = bufferedReader.readLine()) != null)
+				while((currentProcess = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null)
 				{
 					allProcesses += currentProcess + '\n';
 					
@@ -142,7 +143,7 @@ public class MemoriaSuspendida {
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		
 		String allProcesses = "";
-		while((currentProcess = bufferedReader.readLine()) != null)
+		while((currentProcess = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null)
 		{
 			allProcesses += currentProcess +'\n';
 		}
